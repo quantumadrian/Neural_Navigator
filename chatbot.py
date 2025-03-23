@@ -1,7 +1,9 @@
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
 
 # 🔑 Use your actual API key from MakerSuite
-genai.configure(api_key="AIzaSyB-DjbgMDRZassNRy70rup88C90L5oyjtU")
+genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
 
 model = genai.GenerativeModel("gemini-1.5-pro-latest")
 chat = model.start_chat(history=[])
