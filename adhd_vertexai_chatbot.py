@@ -1,14 +1,14 @@
-# various packages required
+import streamlit as st
 from vertexai import init
 from vertexai.preview.generative_models import GenerativeModel, ChatSession, Content, Part
 
-# project and location initialization
+# Initialize Vertex AI
 init(project="adhd-learning-help-chatbot", location="us-central1")
 
-# model type initialization
+# Initialize the Gemini model
 model = GenerativeModel("gemini-1.5-pro")
 
-# instructions for the chatbot to follow and understadning of user background to service them better
+# Initial instructions for the chatbot
 initial_instruction = Content(
     role="user",
     parts=[Part.from_text(
@@ -47,19 +47,43 @@ You're patient, warm, and motivating. Help the user feel like progress is possib
     )]
 )
 
-# start the chat with the initial instructions
-chat: ChatSession = model.start_chat(history=[initial_instruction])
+# Start the chat session with initial instructions
+if "chat" not in st.session_state:
+    st.session_state.chat = model.start_chat(history=[initial_instruction])
 
-print("ADHD Buddy: Hey! I'm your ADHD buddy. Whether its to do with studies or other parts of life, what can I help you with today? (Type 'quit' to exit)")
+# Streamlit app layout
+st.title("🧠 ADHD Buddy Chatbot")
+st.write("Hey! I'm your ADHD buddy. Whether it's to do with studies or other parts of life, what can I help you with today? (Type 'quit' to exit)")
 
-while True:
-    user_input = input("You: ")
+# Display chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display previous messages
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# User input
+user_input = st.chat_input("You: ")
+
+if user_input:
     if user_input.lower() in ["quit", "exit"]:
-        print("ADHD Buddy: Great work today! Take a break or keep up the momentum 💪")
-        break
+        st.session_state.messages.append({"role": "assistant", "content": "Great work today! Take a break or keep up the momentum 💪"})
+        st.rerun()
+    else:
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": user_input})
 
-    try:
-        response = chat.send_message(user_input)
-        print("ADHD Buddy:", response.text)
-    except Exception as e:
-        print("Error:", e)
+        # Send user input to the chatbot
+        try:
+            response = st.session_state.chat.send_message(user_input)
+            assistant_response = response.text
+
+            # Add assistant response to chat history
+            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+        except Exception as e:
+            st.error(f"Error: {e}")
+
+    # Rerun to update the chat display
+    st.rerun()
