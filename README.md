@@ -1,1 +1,1 @@
-# Neural_Navigator
+# Multi-Modal-RAG
