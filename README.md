@@ -1,8 +1,8 @@
 # Neural_Navigator
-## ADHD Support Platform
+## Empowering individuals with ADHD through technology!
 
 ### Overview
-The **ADHD Support Platform** is a digital solution designed to assist individuals with ADHD in managing their daily activities, learning, and mental well-being. The platform integrates multiple features to enhance focus, organization, and emotional support through AI-driven tools.
+**Neural_Navigator** is a digital solution designed to assist individuals with ADHD in managing their daily activities, learning, and mental well-being. The platform integrates multiple features to enhance focus, organization, and emotional support through AI-driven tools.
 
 ## Features
 ### 🎙️ Text-to-Speech
@@ -34,21 +34,22 @@ The **ADHD Support Platform** is a digital solution designed to assist individua
 - Aids in quick information processing for individuals with ADHD.
 
 ## Technologies Used
-- **Frontend:** Streamlit 
-- **AI Services:** Google Gemini API for sentiment and chatbot interactions
+- **Frontend:** Streamlit
+- **Cloud hosting Services:**  Google Cloud API
+- **AI Services:** Google Gemini API for sentiment and chatbot interactions,Google ai studio
 - **Notification System:** In built dashboard notification
 
 ## Installation & Setup
 ### Prerequisites
 - Python 3.x
-- Node.js and npm
+- Access to Google cloud and Google Gemini Services
 - Virtual environment (optional but recommended)
 
 ### Backend Setup
 ```sh
 # Clone the repository
-git clone https://github.com/your-repo/adhd-support-platform.git
-cd adhd-support-platform
+git clone https://github.com/quantumadrian/Neural_Navigator.git
+cd Neural_Navigator
 
 # Create and activate a virtual environment
 python -m venv venv
