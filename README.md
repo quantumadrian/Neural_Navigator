@@ -34,11 +34,9 @@ The **ADHD Support Platform** is a digital solution designed to assist individua
 - Aids in quick information processing for individuals with ADHD.
 
 ## Technologies Used
-- **Frontend:** React.js / Next.js
-- **Backend:** Flask / FastAPI
-- **Database:** PostgreSQL / MySQL
-- **AI Services:** Google Gemini API for sentiment analysis, OpenAI for chatbot interactions
-- **Notification System:** Twilio (SMS), Firebase (Push Notifications), SMTP (Email Alerts)
+- **Frontend:** Streamlit 
+- **AI Services:** Google Gemini API for sentiment and chatbot interactions
+- **Notification System:** In built dashboard notification
 
 ## Installation & Setup
 ### Prerequisites
