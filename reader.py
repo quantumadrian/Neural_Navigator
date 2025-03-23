@@ -1,12 +1,11 @@
-import fitz  # PyMuPDF
+import PyPDF2
 
 def extract_text_from_pdf(file):
-    pdf = fitz.open(stream=file.read(), filetype="pdf")
     text = ""
-    for page in pdf:
-        content = page.get_text()
-        lines = content.split("\n")
-        cleaned_lines = [line for line in lines if not line.strip().isdigit()]
-        text += " ".join(cleaned_lines) + "\n"
-    return text.strip()
-
+    try:
+        pdf_reader = PyPDF2.PdfReader(file)
+        for page in pdf_reader.pages:
+            text += page.extract_text() + "\n"
+        return text.strip() if text else "No readable text found."
+    except Exception as e:
+        return f"Error reading PDF: {str(e)}"
